@@ -1,0 +1,109 @@
+SINGOLE
+
+1.
+
+SELECT country FROM software_houses
+where country = 'United States'
+
+2.
+
+SELECT city FROM players
+WHERE city = 'Rogahnland'
+
+3.
+
+SELECT RIGHT(name, 1)
+FROM players
+WHERE RIGHT(name, 1) = 'a'
+
+4.
+
+SELECT player_id, message FROM reviews
+where player_id = 800
+
+5.
+
+SELECT year FROM tournaments
+WHERE year = 2015
+
+6.
+
+SELECT description FROM pegi_labels
+WHERE description LIKE '% facere %'
+
+7.
+
+SELECT videogame_id FROM category_videogame
+WHERE category_id = 2 OR category_id = 6
+GROUP BY videogame_id
+
+8.
+
+SELECT rating FROM reviews
+WHERE rating BETWEEN 2 AND 4
+
+9.
+
+SELECT * FROM videogames
+WHERE release_date LIKE '%2020%' 
+
+10.
+
+SELECT videogame_id FROM reviews
+WHERE rating = 5
+GROUP BY videogame_id
+
+----- BONUS -----
+
+11.
+
+SELECT COUNT(rating), AVG(rating) FROM reviews
+WHERE videogame_id = 412
+
+12.
+
+SELECT COUNT(id) as NumeroVideoGiochi2018 FROM videogames
+WHERE release_date LIKE '%2018%' AND software_house_id = 1
+
+GROUP BY
+
+1.
+
+SELECT country, COUNT(*) FROM software_houses
+GROUP BY country
+
+2.
+
+SELECT videogame_id, COUNT(*) as Numero_Reviews FROM reviews
+GROUP BY videogame_id
+
+3.
+
+SELECT pegi_label_id, COUNT(*) AS numero_giochi FROM pegi_label_videogame
+GROUP BY pegi_label_id
+
+4.
+
+SELECT DATEPART ( YEAR , release_date ) as anno, COUNT(*) as quantita FROM videogames
+GROUP BY DATEPART ( YEAR , release_date )
+
+5.
+
+SELECT device_id, COUNT(*) AS Numero FROM device_videogame
+GROUP BY device_id
+ORDER BY device_id
+
+6.
+
+SELECT videogame_id FROM reviews
+GROUP BY videogame_id
+ORDER BY AVG(rating)
+
+
+JOIN
+
+1.
+
+SELECT name, lastname, nickname FROM reviews INNER JOIN players
+ON players.id = reviews.player_id
+GROUP BY name, lastname, nickname
